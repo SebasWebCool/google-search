@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFFalse } from '../store/slice/isFinished.slice'
 
-const Search = ({ typeSearch, setResults,  }) => {
+const Search = ({ typeSearch, setResults,results }) => {
 
 
   const term = useSelector((state) => state.termSlice)
@@ -122,7 +122,7 @@ const Search = ({ typeSearch, setResults,  }) => {
         getDNews()
       }
     }
-  },[typeSearch,term])
+  },[typeSearch,term,results])
 
   // return 
 }

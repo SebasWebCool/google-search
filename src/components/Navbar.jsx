@@ -1,28 +1,29 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setFTrue } from '../store/slice/isFinished.slice'
 const navbar = ({darkTheme ,setDarkTheme,setTypeSearch ,typeSearch}) => {
 
+  const t = useSelector(state => state.Isfinished)
   const dispatch= useDispatch()
 
   const hadleSearch =()=>{
     setTypeSearch('a')
-    dispatch(setFTrue)
+    dispatch(setFTrue())
   }
   const hadleImages =()=>{
     setTypeSearch('b')
-    dispatch(setFTrue)
+    dispatch(setFTrue())
   }
   const hadleVideos =()=>{
     setTypeSearch('c')
-    dispatch(setFTrue)
+    dispatch(setFTrue())
   }
   const hadleNews =()=>{
     setTypeSearch('d')
-    dispatch(setFTrue)
+    dispatch(setFTrue())
   }
-
+  console.log(t)
   // console.log(typeSearch);
   return (
     <div className='p-5 pb-0 flex flex-wrap sm:justify-between justify-center items-center border-b dark:border-gray-700 border-gray-200'>
