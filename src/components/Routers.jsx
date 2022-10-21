@@ -7,7 +7,7 @@ import Results from './Results'
 import Search from './Search'
 
 
-const Routers = ({typeSearch, setTypeSearch}) => {
+const Routers = ({setHome,home,typeSearch, setTypeSearch}) => {
 
  
   const [results, setResults] = useState()
@@ -18,15 +18,15 @@ const Routers = ({typeSearch, setTypeSearch}) => {
 
   console.log(results)
   return (
-    <div className='p-4 h-full'>
+    <div className='p-4'>
 
       <Search typeSearch={typeSearch} results={results} setResults={setResults} />
       <Routes>
         {
-          term ? 
-          <Route path='/' element={<Results typeSearch={typeSearch} results={results?.data} suggestion={results?.data.people_also_ask}/>}/>
+          home ? 
+          <Route path='/' element={<Home setHome={setHome} />} />
           :
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Results typeSearch={typeSearch} results={results?.data} suggestion={results?.data.people_also_ask}/>}/>
 
         }
     
