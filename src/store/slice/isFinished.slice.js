@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const Isfinished = createSlice({
     name:'Isfinished',
-    initialState:0,
+    initialState:false,
     reducers:{
-        setFTrue: (state) => state + 1,
-        setFFalse: (state) => state - 1
+        setFTrue: (state) => state = true,
+        setFFalse: (state) => state = false
     }
 })
 

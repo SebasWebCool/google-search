@@ -7,10 +7,7 @@ import Results from './Results'
 import Search from './Search'
 
 
-const Routers = ({setHome,home,typeSearch, setTypeSearch}) => {
-
- 
-  const [results, setResults] = useState()
+const Routers = ({setHome,home,typeSearch, setTypeSearch,setResults,results}) => {
 
 
   const term = useSelector(state => state.termSlice)

@@ -5,28 +5,31 @@ const Videos = ({ results }) => {
 
     console.log(results)
 
-    if(results){
+    if (results) {
 
         return (
-            <section className='block w-full '>
+            <section className='flex justify-evenly flex-wrap gap-10'>
                 {
-                    results?.map(res => (
-                        <div key={res[res]} className='p-2 my-5 bg-slate-600 w-60'>
+                    results?.map((res,i) => (
+                        <div key={i} className='w-2/6'>
                             <a className='w-full ' href={res.url}>
                                 <img className='w-full' src={res.image} alt="" />
                             </a>
                             <a href={res.url}>
-                                <h2>
+                                <h2 className='text-lg hover:underline '>
                                     {res.title}
                                 </h2>
                             </a>
+                            <p>
+                                {res.url.length > 30 ? res.url.slice(0, 30) : res.url}
+                            </p>
                         </div>
                     ))
                 }
             </section>
         )
-    }else{
-        return <Loading/>
+    } else {
+        return <Loading />
     }
 }
 
