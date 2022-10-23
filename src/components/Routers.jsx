@@ -15,7 +15,7 @@ const Routers = ({setHome,home,typeSearch, setTypeSearch,setResults,results}) =>
 
   console.log(results)
   return (
-    <div className='p-4'>
+    <div className='p-4 h-full'>
 
       <Search typeSearch={typeSearch} results={results} setResults={setResults} />
       <Routes>

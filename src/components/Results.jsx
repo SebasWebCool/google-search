@@ -14,7 +14,7 @@ const Results = ({ results, suggestion, typeSearch}) => {
   console.log(typeSearch);
 
   return (
-    <div>
+    <div class="h-full">
       {
         typeSearch == 'a' ?   <Htmls results={results?.organic} suggestion={suggestion}/> : ""
       }

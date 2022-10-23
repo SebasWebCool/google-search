@@ -12,7 +12,6 @@ const Search = ({ typeSearch, setResults,results }) => {
   const dispatch = useDispatch()
 
   // console.log(term)
-  useEffect(()=>{
 
   const getAResult = () => {
 
@@ -122,7 +121,7 @@ const Search = ({ typeSearch, setResults,results }) => {
         getDNews()
       }
     }
-  },[typeSearch,term,results])
+    
 
   // return 
 }

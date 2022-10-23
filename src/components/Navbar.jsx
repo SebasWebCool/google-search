@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setFTrue } from '../store/slice/isFinished.slice'
 import Loading from '../components/Loading'
+import NavSearch from './NavSearch'
 
 
-const navbar = ({ setHome, darkTheme, setDarkTheme, setTypeSearch, typeSearch }) => {
+const navbar = ({ home, setHome, darkTheme, setDarkTheme, setTypeSearch, typeSearch }) => {
 
   const t = useSelector(state => state.Isfinished)
 
@@ -46,6 +47,11 @@ const navbar = ({ setHome, darkTheme, setDarkTheme, setTypeSearch, typeSearch })
           {darkTheme ? 'Light ☀' : 'Dark 🌙'}
         </button>
       </div>
+
+      {
+       home ? '' : <NavSearch/> 
+      }
+
       <div className='py-3 w-screen'>
         <ul className='w-full flex justify-evenly align-middle'>
           <li className='hover:bg-slate-500 ease-out translate-y-2'>
