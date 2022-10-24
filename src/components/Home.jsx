@@ -25,7 +25,7 @@ const Home = ({setHome}) => {
   console.log(isFinished)
 
   return (
-    <div className=' flex justify-center align-middle p-3 flex-col py-12 px max-w-2xl m-auto'>
+    <div className='flex justify-center align-middle p-3 flex-col py-12 px max-w-2xl m-auto'>
       <h1 className='py-10 text-5xl bg-blue-500 font-bold text-white px-2 rounded dark:bg-gray-500 dark:text-gray-900'>
         Goggl
       </h1>

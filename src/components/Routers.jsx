@@ -18,16 +18,16 @@ const Routers = ({setHome,home,typeSearch, setTypeSearch,setResults,results}) =>
     <div className='p-4 h-full'>
 
       <Search typeSearch={typeSearch} results={results} setResults={setResults} />
-      <Routes>
         {
           home ? 
-          <Route path='/' element={<Home setHome={setHome} />} />
-          :
-          <Route path='/' element={<Results typeSearch={typeSearch} results={results?.data} suggestion={results?.data.people_also_ask}/>}/>
+          // <Route path='/' element={<Home setHome={setHome} />} />
+          <Home setHome={setHome} />
+          : 
+          <Results typeSearch={typeSearch} results={results?.data} suggestion={results?.data.people_also_ask}/>
+          // <Route path='/' element={<Results typeSearch={typeSearch} results={results?.data} suggestion={results?.data.people_also_ask}/>}/>
 
         }
     
-      </Routes>
     </div>
   )
 }

@@ -1,7 +1,8 @@
 import React from 'react'
 import Loading from '../components/Loading'
+import Pagination from './Pagination'
 
-const Videos = ({ results }) => {
+const Videos = ({ results,setCurrentPage,totalPages}) => {
 
     console.log(results)
 
@@ -26,6 +27,9 @@ const Videos = ({ results }) => {
                         </div>
                     ))
                 }
+
+                <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} results={results}/>
+
             </section>
         )
     } else {

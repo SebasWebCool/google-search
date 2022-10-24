@@ -1,6 +1,7 @@
 import React from 'react'
 import Loading from '../components/Loading'
-const Imgs = ({ results }) => {
+import Pagination from './Pagination'
+const Imgs = ({ results, totalPages, setCurrentPage }) => {
 
   // console.log(results)
   if(results){
@@ -15,7 +16,8 @@ const Imgs = ({ results }) => {
             </a>
           ))
         }
-  
+        <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} results={results}/>
+
       </div>
     )
   } else{

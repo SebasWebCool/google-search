@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loading from '../components/Loading'
 import { setFTrue } from '../store/slice/isFinished.slice'
 import { setTerm } from '../store/slice/term.slice'
+import Pagination from './Pagination'
 
-const htmls = ({ suggestion, results }) => {
+const htmls = ({setCurrentPage, suggestion, results, totalPages}) => {
 
   const dispatch = useDispatch()
   const term = useSelector(state => state.termSlice)
   
-  console.log(term)
+  console.log(results)
 
   if (results) {
     return (
@@ -54,6 +55,7 @@ const htmls = ({ suggestion, results }) => {
             ))
           }
         </main>
+        <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} results={results}/>
       </div>)
   } else {
     return <Loading />

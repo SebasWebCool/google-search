@@ -18,7 +18,7 @@ function App() {
                     : darkTheme ? `dark App `  
                     : darkTheme == false ? 'App h-screen'
                     : 'App'
-                                }> 
+                    }> 
       <div className="bg-gray-100 dark:bg-gray-900 dark:text-gray-200 h-full flex flex-col justify-between align-middle">
         
         <Navbar home={home} setResults={setResults} setHome={setHome} typeSearch={typeSearch} setTypeSearch={setTypeSearch} darkTheme={darkTheme} setDarkTheme={setDarkTheme}/>

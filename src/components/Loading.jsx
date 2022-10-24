@@ -4,13 +4,11 @@ const Loading = () => {
   return (
     <div className='flex flex-col justify-center items-center w-full h-full '>
       <Audio
-        height="80"
-        width="80"
+        height="100"
+        width="100"
         radius="9"
         color='green'
         ariaLabel='three-dots-loading'
-        wrapperStyle
-        wrapperClass
       />
       <p className='text-xl text-center'>Loading</p>
     </div>

@@ -13,6 +13,9 @@ const Search = ({ typeSearch, setResults,results }) => {
 
   // console.log(term)
 
+  useEffect(()=>{
+    
+
   const getAResult = () => {
 
 
@@ -121,7 +124,8 @@ const Search = ({ typeSearch, setResults,results }) => {
         getDNews()
       }
     }
-    
+  },[term,results,typeSearch])
+
 
   // return 
 }

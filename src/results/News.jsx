@@ -1,7 +1,8 @@
 import React from 'react'
 import Loading from '../components/Loading'
+import Pagination from './Pagination';
 
-const News = ({ results }) => {
+const News = ({ results,totalPages,setCurrentPage}) => {
 
   console.log(results);
 
@@ -39,6 +40,8 @@ const News = ({ results }) => {
             </div>
           ))
         }
+        <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} results={results}/>
+
       </section>
     )
   } else {
