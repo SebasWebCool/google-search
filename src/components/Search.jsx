@@ -117,7 +117,7 @@ const Search = ({ typeSearch, setResults,results }) => {
       if (typeSearch == 'a' && isFinished ) {
         getAResult()
       } else if (typeSearch == 'b' && isFinished ) {
-        getBImg()
+        // getBImg()
       } else if (typeSearch == 'c' && isFinished ) {
         getCVideos()
       }else if(typeSearch == 'd' && isFinished ){

@@ -5,26 +5,23 @@ import Imgs from '../results/Imgs';
 import Videos from '../results/Videos';
 import { useSelector } from 'react-redux';
 
-const Results = ({ results, suggestion, typeSearch}) => {
-  const [currentPage, setCurrentPage] = useState(1)
-  const [itemsForPage, setItemsForPage] = useState(16)
+const Results = ({ suggestion, typeSearch}) => {
 
-  const lastPosition = currentPage * itemsForPage
-  const firstPosition = lastPosition - itemsForPage
-  let totalPages 
-  results?.organic  ?  totalPages =  Math.ceil(results?.organic.length / itemsForPage)
-                    : totalPages = Math.ceil(results?.results.length / itemsForPage)
+  const [results, setResults] = useState()
+
+ 
+  // results?.organic  ?  totalPages =  Math.ceil(results?.organic.length / itemsForPage)
+  //                   : totalPages = Math.ceil(results?.results.length / itemsForPage)
                     
 
-  let showedResults  
+  // let showedResults  
 
-  results?.organic  ?  showedResults =  results?.organic.slice(firstPosition,lastPosition)
-                    : showedResults = results?.results.slice(firstPosition,lastPosition)
+  // results?.organic  ?  showedResults =  results?.organic.slice(firstPosition,lastPosition)
+  //                   : showedResults = results?.results.slice(firstPosition,lastPosition)
 
-  console.log(results);
-  console.log(suggestion);
+  // console.log(results);
 
-  results && console.log(results[0])
+  // results && console.log(results[0])
 
   const loading = useSelector(state => state.isLoading)
   console.log(loading);
@@ -32,13 +29,13 @@ const Results = ({ results, suggestion, typeSearch}) => {
   return (
     <div >
       {
-        typeSearch == 'a' ?   <Htmls totalPages={totalPages} setCurrentPage={setCurrentPage} results={showedResults} suggestion={suggestion}/> 
+        typeSearch == 'a' ?   <Htmls results={results} setResults={setResults}/> 
 
-        : typeSearch == 'b' ?   <Imgs totalPages={totalPages} setCurrentPage={setCurrentPage} results={showedResults}/>
+        : typeSearch == 'b' ?   <Imgs setResults={setResults} results={results}/>
     
-        : typeSearch == 'c' ?   <Videos totalPages={totalPages} setCurrentPage={setCurrentPage} results={showedResults}/>
-      
-        : typeSearch == 'd' ?   <News totalPages={totalPages} setCurrentPage={setCurrentPage} results={showedResults}/>
+        : typeSearch == 'c' ?   <Videos totalPages={totalPages} setCurrentPage={setCurrentPage} results={results}/>
+
+        : typeSearch == 'd' ?   <News totalPages={totalPages} setCurrentPage={setCurrentPage} results={results}/>
 
         : ""
       }

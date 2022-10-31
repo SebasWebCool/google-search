@@ -14,7 +14,7 @@ const Home = ({setHome}) => {
   const handleTerm = (e)=>{
     e.preventDefault()
     const value = e.target.s.value.trim()
-    dispatch(setTerm(`\"${value}"`))
+    dispatch(setTerm(value))
     dispatch(setFTrue())
     setHome(false)
     console.log(term);

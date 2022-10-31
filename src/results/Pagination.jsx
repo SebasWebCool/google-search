@@ -1,39 +1,42 @@
 import React, { useState } from 'react'
 
-const Pagination = ({ results, setCurrentPage, totalPages }) => {
-  console.log(results);
-  
+const Pagination = ({  setPage, totalResults }) => {
+
   const [selectPage, setselectPage] = useState(1)
 
   // console.log(totalPages)
-  const array = []
-  for (let i = 1; i <= totalPages; i++) {
-    array.push(i)
+  let pageNumber = totalResults && Math.ceil(totalResults / 50)
+  let arrayPage = []
+  for (let i = 1; i <= pageNumber; i++) {
+    arrayPage.push(i)
   }
 
-  const handlePage = (i)=>{
-    setCurrentPage(i)
+
+  const handlePage = (i) => {
+    setPage(i)
     setselectPage(i)
   }
 
   return (
-    <div className='w-full pt-5'>
-      <ul className='flex w-full justify-center gap-2 '>
-        {
-          array.map(num => (
-            <li key={num}>
-              <p className={
-                selectPage != num ? 'p-2 dark:bg-slate-400 bg-blue-500 cursor-pointer rounded'
-                :`p-2 bg-slate-900 cursor-pointer text-gray-200 rounded`
-                } 
-              onClick={()=>handlePage(num)}>
-                {num}
-              </p>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+    
+      <div className='w-full pt-5'>
+
+        <ul className='w-full flex  justify-center align-middle'>
+          {
+            arrayPage.map((i) => (
+
+              <li key={i} >
+                <span onClick={() => handlePage(i)} className={
+                  selectPage !=  i ? 'p-2 dark:bg-slate-400 bg-blue-500 cursor-pointer rounded'
+                    : `p-2 bg-slate-900 cursor-pointer text-gray-200 rounded`
+                  } >
+                  {i}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
   )
 }
 

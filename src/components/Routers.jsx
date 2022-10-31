@@ -7,7 +7,7 @@ import Results from './Results'
 import Search from './Search'
 
 
-const Routers = ({setHome,home,typeSearch, setTypeSearch,setResults,results}) => {
+const Routers = ({setHome,home,typeSearch, setTypeSearch,results}) => {
 
 
   const term = useSelector(state => state.termSlice)
@@ -17,7 +17,7 @@ const Routers = ({setHome,home,typeSearch, setTypeSearch,setResults,results}) =>
   return (
     <div className='p-4 h-full'>
 
-      <Search typeSearch={typeSearch} results={results} setResults={setResults} />
+      {/* <Search typeSearch={typeSearch} results={results} setResults={setResults} /> */}
         {
           home ? 
           // <Route path='/' element={<Home setHome={setHome} />} />
