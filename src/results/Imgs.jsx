@@ -3,42 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Loading from '../components/Loading'
 import Pagination from './Pagination'
-const Imgs = ({ results, setResults }) => {
 
-  const [page, setPage] = useState(1)
-  const [totalResults, setTotalResults] = useState("")
-
-  const term = useSelector(state => state.termSlice)
-  const [safeSearch, setSafeSearch] = useState(false)
-
-  console.log(term);
-
-  useEffect(() => {
-
-    const options = {
-      method: 'GET',
-      url: 'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI',
-      params: {
-        q: `${term}`,
-        pageNumber: page,
-        pageSize: '36',
-        autoCorrect: 'true',
-        safeSearch: `${safeSearch}`
-      },
-      headers: {
-        'X-RapidAPI-Key': '1112f86f7emsh23a7be7b7759569p18c4a8jsn6094db8603c1',
-        'X-RapidAPI-Host': 'contextualwebsearch-websearch-v1.p.rapidapi.com'
-      }
-    };
-
-    axios.request(options)
-      .then(res => {
-        setTotalResults(res.data.totalCount)
-        setResults(res.data.value)
-      })
-      .catch(err => console.log(err))
-
-  }, [term, page,safeSearch])
+const Imgs = ({ results, results, setSafeSearch, totalResults, setPage, safeSearch }) => {
 
   const handleSafeSearch = ()=>{
     setSafeSearch(!safeSearch)

@@ -6,45 +6,12 @@ import { setFTrue } from '../store/slice/isFinished.slice'
 import { setTerm } from '../store/slice/term.slice'
 import Pagination from './Pagination'
 
-const htmls = ({ results, setResults}) => {
+const htmls = ({ results, setSafeSearch, similarSearch, totalResults, setPage, safeSearch}) => {
 
-  const dispatch = useDispatch()
-  const [page, setPage] = useState(1)
-  const [totalResults, setTotalResults] = useState("")
-  const [similarSearch, setSimilarSearch] = useState()
+  const dispatch = useDispatch()  
 
   const term = useSelector(state => state.termSlice)
-  const [safeSearch, setSafeSearch] = useState(false)
 
-  console.log(term);
-
-  useEffect(() => {
-
-    const options = {
-      method: 'GET',
-      url: 'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI',
-      params: {
-        q: `${term}`,
-        pageNumber: page,
-        pageSize: '36',
-        autoCorrect: 'true',
-        safeSearch: `${safeSearch}`
-      },
-      headers: {
-        'X-RapidAPI-Key': '1112f86f7emsh23a7be7b7759569p18c4a8jsn6094db8603c1',
-        'X-RapidAPI-Host': 'contextualwebsearch-websearch-v1.p.rapidapi.com'
-      }
-    };
-
-    axios.request(options)
-      .then(res => {
-        setTotalResults(res.data.totalCount)
-        setResults(res.data.value)
-        setSimilarSearch(res.data.relatedSearch)
-      })
-      .catch(err => console.log(err))
-
-  }, [term, page,safeSearch])
 
   const handleSafeSearch = ()=>{
     setSafeSearch(!safeSearch)
@@ -99,12 +66,12 @@ const htmls = ({ results, setResults}) => {
                 <a href={res.url}>
                   <h2 className='text-lg hover:underline dark:text-blue-300 text-blue-700 '>{res.title}</h2>
                 </a>
-                <p className='w-full text-justify'>{res.description}</p>
+                <p className='w-full text-justify'>{res.description.length > 200 ? res.description.slice(0,100) : res.description}</p>
               </section>
             ))
           }
         </main>
-        <Pagination totalResults={totalResults} setPage={setPage} results={results}/>
+        <Pagination totalResults={totalResults} setPage={setPage} />
       </div>)
   } else {
     return <Loading />
