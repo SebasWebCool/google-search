@@ -13,7 +13,6 @@ const Results = ({ typeSearch}) => {
   const [page, setPage] = useState(1)
   const [safeSearch, setSafeSearch] = useState(false)
 
-  
   const [similarSearch, setSimilarSearch] = useState()
 
   const term = useSelector(state => state.termSlice)
@@ -66,8 +65,53 @@ const Results = ({ typeSearch}) => {
         })
         .catch(err => console.log(err))
 
-    }
-  },[term,typeSearch,page])
+    }else if (typeSearch == 'c'){
+      const options = {
+        method: 'GET',
+        url: 'https://youtube-search-results.p.rapidapi.com/youtube-search/',
+        params: {q:`${term}`, next: `${page}`},
+        headers: {
+          'X-RapidAPI-Key': '1112f86f7emsh23a7be7b7759569p18c4a8jsn6094db8603c1',
+          'X-RapidAPI-Host': 'youtube-search-results.p.rapidapi.com'
+        }
+      };
+      
+      axios.request(options)
+        .then(res => {
+          setTotalResults(res.data.results)
+          setResults(res.data.items)
+        })
+        .catch(err => console.log(err))
+    } else if( typeSearch == 'd' ){
+
+      const options = {
+        method: 'GET',
+        url: 'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/search/NewsSearchAPI',
+        params: {
+          q: `${term}`,
+          pageNumber: page,
+          pageSize: '36',
+          autoCorrect: 'true',
+          safeSearch: `${safeSearch}`,
+          withThumbnails: 'true',
+          fromPublishedDate: 'null',
+          toPublishedDate: 'null'
+        },
+        headers: {
+          'X-RapidAPI-Key': '1112f86f7emsh23a7be7b7759569p18c4a8jsn6094db8603c1',
+          'X-RapidAPI-Host': 'contextualwebsearch-websearch-v1.p.rapidapi.com'
+        }
+      };
+
+      axios.request(options)
+        .then(res => {
+          setTotalResults(res.data.totalCount)
+          setResults(res.data.value)
+        })
+        .catch(err => console.log(err))
+
+
+    }},[term,typeSearch,page])
 
   const loading = useSelector(state => state.isLoading)
   console.log(loading);
@@ -77,11 +121,11 @@ const Results = ({ typeSearch}) => {
       {
         typeSearch == 'a' ?   <Htmls results={results} setPage={setPage} similarSearch={similarSearch} setSafeSearch={setSafeSearch} totalResults={totalResults}/> 
 
-        : typeSearch == 'b' ?   <Imgs  setPage={setPage} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results}/>
+        : typeSearch == 'b' ?   <Imgs  setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results}/>
     
-        : typeSearch == 'c' ?   <Videos totalPages={totalPages} setCurrentPage={setCurrentPage} results={results}/>
+        : typeSearch == 'c' ?   <Videos setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results}/>
 
-        : typeSearch == 'd' ?   <News totalPages={totalPages} setCurrentPage={setCurrentPage} results={results}/>
+        : typeSearch == 'd' ?   <News setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results}/>
 
         : ""
       }

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import Loading from '../components/Loading'
 import Pagination from './Pagination'
 
-const Imgs = ({ results, results, setSafeSearch, totalResults, setPage, safeSearch }) => {
+const Imgs = ({ results, setSafeSearch, totalResults, setPage, safeSearch }) => {
 
   const handleSafeSearch = ()=>{
     setSafeSearch(!safeSearch)
@@ -13,7 +13,6 @@ const Imgs = ({ results, results, setSafeSearch, totalResults, setPage, safeSear
 
   console.log(results)
   console.log(totalResults)
-  console.log(page)
 
   if (results) {
 
