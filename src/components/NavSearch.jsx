@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFTrue } from '../store/slice/isFinished.slice'
+import { setLoadingTrue } from '../store/slice/isLoading.slice'
 import { setTerm } from '../store/slice/term.slice'
 
 const NavSearch = () => {
@@ -13,7 +14,7 @@ const NavSearch = () => {
     e.preventDefault()
     const value = e.target.input.value.trim()
     dispatch(setTerm(value))
-    dispatch(setFTrue())
+    dispatch(setLoadingTrue())
     console.log(term)
   }
 

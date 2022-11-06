@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { setFTrue } from '../store/slice/isFinished.slice'
 import Loading from '../components/Loading'
 import NavSearch from './NavSearch'
+import { setLoadingTrue } from '../store/slice/isLoading.slice'
 
 
 const navbar = ({ home, setHome, darkTheme, setDarkTheme, setTypeSearch, typeSearch }) => {
@@ -18,20 +19,20 @@ const navbar = ({ home, setHome, darkTheme, setDarkTheme, setTypeSearch, typeSea
   }
 
   const hadleSearch = () => {
+    dispatch(setLoadingTrue())
     setTypeSearch('a')
-    dispatch(setFTrue())
   }
   const hadleImages = () => {
+    dispatch(setLoadingTrue())
     setTypeSearch('b')
-    dispatch(setFTrue())
   }
   const hadleVideos = () => {
+    dispatch(setLoadingTrue())
     setTypeSearch('c')
-    dispatch(setFTrue())
   }
   const hadleNews = () => {
+    dispatch(setLoadingTrue())
     setTypeSearch('d')
-    dispatch(setFTrue())
   }
   console.log(t)
   // console.log(typeSearch);

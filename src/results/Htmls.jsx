@@ -19,17 +19,17 @@ const htmls = ({ results, setSafeSearch, similarSearch, totalResults, setPage, s
   }
   
   console.log(results)
+  console.log(safeSearch)
 
-  if (results) {
     return (
       <div className='p-6 flex flex-col justify-start align-middle'>
         <div className='w-full flex justify-start align-middle'>
           <span className='text-xl p-1 ml-4 mr-2'>Sefe Search</span>
-          <button className='text-xl p-1 bg-slate-600 cursor-pointer text-gray-200 rounded' onClick={handleSafeSearch}> {""+`${safeSearch}`} </button>
+          <button className='bg-blue-500 dark:bg-slate-600 text-xl p-1  cursor-pointer text-gray-200 rounded' onClick={handleSafeSearch}> {safeSearch && ""+`${safeSearch}`} </button>
         </div>
 
         <section className='px-2'>
-          <h3 className='text-2xl pb-2'>
+          <h3 className='text-xl pb-2'>
             Similar Search
           </h3>
            <ul className='flex flex-wrap gap-2 py-7'>
@@ -39,7 +39,6 @@ const htmls = ({ results, setSafeSearch, similarSearch, totalResults, setPage, s
                   <li className='px-3' key={i}>
                     <a className='hover:underline cursor-pointer' onClick={() => {
                       dispatch(setTerm(sugges))
-                      // dispatch(setFTrue())
                       }}
                     >
                       <p>
@@ -53,8 +52,8 @@ const htmls = ({ results, setSafeSearch, similarSearch, totalResults, setPage, s
         </section>
         <main className='flex flex-wrap justify-between align-middle space-y-6 sm:px-5'>
           {
-            results?.map((res) => (
-              <section key={res.id} className='md:w-2/5 w-full'>
+            results?.map((res,i) => (
+              <section key={i} className='md:w-2/5 w-full'>
                   <p className='text-sm'>
                     {res.datePublished}
                   </p>
@@ -73,9 +72,7 @@ const htmls = ({ results, setSafeSearch, similarSearch, totalResults, setPage, s
         </main>
         <Pagination totalResults={totalResults} setPage={setPage} />
       </div>)
-  } else {
-    return <Loading />
-  }
+
 }
 
 export default htmls

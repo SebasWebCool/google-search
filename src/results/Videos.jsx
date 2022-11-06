@@ -1,53 +1,69 @@
 import React from 'react'
+import { useState } from 'react'
 import Loading from '../components/Loading'
 import Pagination from './Pagination'
 
-const Videos = ({ results, setSafeSearch, totalResults, setPage, safeSearch }) => {
+const Videos = ({ results, setCursorVideos}) => {
 
-    console.log(results)
+    const [previousPage, setPreviousPage] = useState()
 
-
-    const handleSafeSearch = () => {
-        setSafeSearch(!safeSearch)
-        console.log(safeSearch);
-    }
+        console.log(results)
 
 
-    if (results) {
+        const handleNext = ()=>{
+            setPreviousPage(results.cursorNext)
+            setCursorVideos(results.cursorNext)
+        }
+
+        const handlePrevious = ()=>{
+            setCursorVideos(previousPage)
+        }
+        
+        console.log(previousPage);
+
 
         return (
-            <section className='flex justify-evenly flex-wrap gap-10'>
-                <div className='w-full flex justify-start align-middle'>
-                    <span className='p-1 ml-4 mr-2'>Sefe Search</span>
-                    <button className='p-1 bg-slate-600 cursor-pointer text-gray-200 rounded' onClick={handleSafeSearch}> {"" + `${safeSearch}`} </button>
-                </div>
+            <section className='flex flex-col justify-center align-middle gap-10'>
+            
+                <div className='flex flex-wrap justify-center gap-10'>
+
                 {
-                    results?.map((res, i) => (
+                    results?.contents.map((res, i) =>(
+                        
+                        res.type == "video" ?
+                        
                         <div key={i} className='w-2/6'>
-                            <a className='w-full ' href={res.url}>
-                                {/* <img className='w-full' src={res.bestThumbnail.url} alt="" /> */}
+                            <a className='w-full ' href={`https://www.youtube.com/watch?v=${res.video.videoId}`}>
+                                <img className='w-full' src={res.video.thumbnails && res.video.thumbnails[0].url} alt="" />
                             </a>
+                            
                             <a href={res.url}>
                                 <h2 className='text-lg hover:underline '>
-                                    {res.title}
+                                    {res.video.title.length > 30 ? res.video.title.slice(0,40) + '...': res.video.title}
                                 </h2>
                             </a>
                             <p>
-                                {res.url.length > 30 ? res.url.slice(0, 30) : res.url}
+                            https://www.youtube.com/watch?v={res.video.videoId}
+                                {/* {   res.url &&  res.url.length > 30 ? res.url.slice(0, 30) : res.url}  */}
                             </p>
-                            <span>{res.uploadedAt}</span>
-                            <span>{res.duration}</span>
+                            <span>Views {res.video.stats.views}</span>
+                            {/* <span>{res.contents.video.publishedTimeText}</span> */}
                         </div>
-                    ))
+                    :""
+                    )
+                    )
                 }
+                </div>
 
-                <Pagination totalResults={totalResults} setPage={setPage} />
+                <div className='flex justify-center gap-20'>
+                   {
+                     previousPage ? <button onClick={()=>handlePrevious()}>Previous</button> : ""
+                   }
+                    <button onClick={()=> handleNext()} >Next</button>
+                </div>
 
             </section>
         )
-    } else {
-        return <Loading />
-    }
 }
 
 export default Videos

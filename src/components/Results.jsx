@@ -1,12 +1,14 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import News from '../results/News'
 import Htmls from '../results/Htmls'
 import Imgs from '../results/Imgs';
 import Videos from '../results/Videos';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import Loading from './Loading';
+import { setLoadingFalse } from '../store/slice/isLoading.slice';
 
-const Results = ({ typeSearch}) => {
+const Results = ({ typeSearch }) => {
 
   const [results, setResults] = useState()
   const [totalResults, setTotalResults] = useState("")
@@ -15,10 +17,15 @@ const Results = ({ typeSearch}) => {
 
   const [similarSearch, setSimilarSearch] = useState()
 
-  const term = useSelector(state => state.termSlice)
+  const [cursorVideos, setCursorVideos] = useState("")
 
-  useEffect(()=>{
-    if(typeSearch == 'a'){
+  const term = useSelector(state => state.termSlice)
+  const isLoading = useSelector(state => state.isLoading)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (typeSearch == 'a') {
       const options = {
         method: 'GET',
         url: 'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI',
@@ -34,14 +41,15 @@ const Results = ({ typeSearch}) => {
           'X-RapidAPI-Host': 'contextualwebsearch-websearch-v1.p.rapidapi.com'
         }
       }
-  
+
       axios.request(options)
         .then(res => {
           setTotalResults(res.data.totalCount)
           setResults(res.data.value)
           setSimilarSearch(res.data.relatedSearch)
+          dispatch(setLoadingFalse())
         })
-    }else if(typeSearch == 'b'){
+    } else if (typeSearch == 'b') {
       const options = {
         method: 'GET',
         url: 'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI',
@@ -57,32 +65,35 @@ const Results = ({ typeSearch}) => {
           'X-RapidAPI-Host': 'contextualwebsearch-websearch-v1.p.rapidapi.com'
         }
       };
-  
+
       axios.request(options)
         .then(res => {
           setTotalResults(res.data.totalCount)
           setResults(res.data.value)
+          dispatch(setLoadingFalse())
         })
         .catch(err => console.log(err))
 
-    }else if (typeSearch == 'c'){
+    } else if (typeSearch == 'c') {
       const options = {
         method: 'GET',
-        url: 'https://youtube-search-results.p.rapidapi.com/youtube-search/',
-        params: {q:`${term}`, next: `${page}`},
+        url: 'https://youtube138.p.rapidapi.com/search/',
+        params: {q: `${term}`, hl: 'en', gl: 'US', cursor: `${cursorVideos}`},
         headers: {
           'X-RapidAPI-Key': '1112f86f7emsh23a7be7b7759569p18c4a8jsn6094db8603c1',
-          'X-RapidAPI-Host': 'youtube-search-results.p.rapidapi.com'
+          'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
       };
       
+
       axios.request(options)
         .then(res => {
-          setTotalResults(res.data.results)
-          setResults(res.data.items)
+          setResults(res.data)
+          dispatch(setLoadingFalse())
+
         })
         .catch(err => console.log(err))
-    } else if( typeSearch == 'd' ){
+    } else if (typeSearch == 'd') {
 
       const options = {
         method: 'GET',
@@ -107,32 +118,41 @@ const Results = ({ typeSearch}) => {
         .then(res => {
           setTotalResults(res.data.totalCount)
           setResults(res.data.value)
+          dispatch(setLoadingFalse())
+
+          
         })
         .catch(err => console.log(err))
 
 
-    }},[term,typeSearch,page])
+    }
+  }, [term, typeSearch, page, cursorVideos, safeSearch])
 
   const loading = useSelector(state => state.isLoading)
   console.log(loading);
 
-  return (
-    <div >
-      {
-        typeSearch == 'a' ?   <Htmls results={results} setPage={setPage} similarSearch={similarSearch} setSafeSearch={setSafeSearch} totalResults={totalResults}/> 
+  if (isLoading) {
+    return <Loading />
+  } else {
 
-        : typeSearch == 'b' ?   <Imgs  setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results}/>
-    
-        : typeSearch == 'c' ?   <Videos setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results}/>
+    return (
+      <div >
+        {
+            typeSearch == 'a' ?  <Htmls results={results} setPage={setPage} safeSearch={safeSearch} similarSearch={similarSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} />
+        
+            : typeSearch == 'b' ?  <Imgs setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results} />
 
-        : typeSearch == 'd' ?   <News setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results}/>
+            : typeSearch == 'c' ? <Videos setCursorVideos={setCursorVideos} results={results} />
 
-        : ""
-      }
-      
-    </div>
-    
-  )
+            : typeSearch == 'd' ? <News setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results} />
+
+            : ""
+        }
+
+      </div>
+
+    )
+  }
 }
 
 export default Results

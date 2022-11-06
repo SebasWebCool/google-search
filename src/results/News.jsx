@@ -12,13 +12,13 @@ const News = ({ results, setSafeSearch, totalResults, setPage, safeSearch}) => {
     console.log(safeSearch);
   }
 
-  if (results) {
+  // if (results) {
 
     return (
       <section className=' flex flex-wrap justify-between items-center space-y-6 sm:px-10'>
         <div className='w-full flex justify-start align-middle'>
           <span className='p-1 ml-4 mr-2'>Sefe Search</span>
-          <button className='p-1 bg-slate-600 cursor-pointer text-gray-200 rounded' onClick={handleSafeSearch}> {""+`${safeSearch}`} </button>
+          <button className='p-1 bg-blue-500 dark:bg-slate-600 cursor-pointer text-gray-200 rounded' onClick={handleSafeSearch}> {""+`${safeSearch}`} </button>
         </div>
         {
           results?.map((res, i) => (
@@ -54,9 +54,9 @@ const News = ({ results, setSafeSearch, totalResults, setPage, safeSearch}) => {
 
       </section>
     )
-  } else {
-    return <Loading />
-  }
+//   } else {
+//     return <Loading />
+//   }
 }
 
 export default News

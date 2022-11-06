@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { redirect } from 'react-router-dom'
 import { setFTrue } from '../store/slice/isFinished.slice'
+import { setLoadingTrue } from '../store/slice/isLoading.slice'
 import { setTerm } from '../store/slice/term.slice'
 
 const Home = ({setHome}) => {
@@ -14,8 +15,8 @@ const Home = ({setHome}) => {
   const handleTerm = (e)=>{
     e.preventDefault()
     const value = e.target.s.value.trim()
+    dispatch(setLoadingTrue())
     dispatch(setTerm(value))
-    dispatch(setFTrue())
     setHome(false)
     console.log(term);
     console.log(isFinished)

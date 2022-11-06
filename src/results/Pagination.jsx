@@ -21,11 +21,11 @@ const Pagination = ({  setPage, totalResults }) => {
     
       <div className='w-full pt-5'>
 
-        <ul className='w-full flex  justify-center align-middle'>
+        <ul className='w-full flex flex-wrap gap-1  justify-center align-middle'>
           {
             arrayPage.map((i) => (
 
-              <li key={i} >
+              <li key={i} className='mt-5' >
                 <span onClick={() => handlePage(i)} className={
                   selectPage !=  i ? 'p-2 dark:bg-slate-400 bg-blue-500 cursor-pointer rounded'
                     : `p-2 bg-slate-900 cursor-pointer text-gray-200 rounded`
