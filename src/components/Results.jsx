@@ -78,13 +78,13 @@ const Results = ({ typeSearch }) => {
       const options = {
         method: 'GET',
         url: 'https://youtube138.p.rapidapi.com/search/',
-        params: {q: `${term}`, hl: 'en', gl: 'US', cursor: `${cursorVideos}`},
+        params: { q: `${term}`, hl: 'en', gl: 'US', cursor: `${cursorVideos}` },
         headers: {
           'X-RapidAPI-Key': '1112f86f7emsh23a7be7b7759569p18c4a8jsn6094db8603c1',
           'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
       };
-      
+
 
       axios.request(options)
         .then(res => {
@@ -120,7 +120,7 @@ const Results = ({ typeSearch }) => {
           setResults(res.data.value)
           dispatch(setLoadingFalse())
 
-          
+
         })
         .catch(err => console.log(err))
 
@@ -128,8 +128,8 @@ const Results = ({ typeSearch }) => {
     }
   }, [term, typeSearch, page, cursorVideos, safeSearch])
 
-  const loading = useSelector(state => state.isLoading)
-  console.log(loading);
+  // const loading = useSelector(state => state.isLoading)
+  // console.log(loading);
 
   if (isLoading) {
     return <Loading />
@@ -138,15 +138,15 @@ const Results = ({ typeSearch }) => {
     return (
       <div >
         {
-            typeSearch == 'a' ?  <Htmls results={results} setPage={setPage} safeSearch={safeSearch} similarSearch={similarSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} />
-        
-            : typeSearch == 'b' ?  <Imgs setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results} />
+          typeSearch == 'a' ? <Htmls results={results} setPage={setPage} safeSearch={safeSearch} similarSearch={similarSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} />
 
-            : typeSearch == 'c' ? <Videos setCursorVideos={setCursorVideos} results={results} />
+            : typeSearch == 'b' ? <Imgs setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results} />
 
-            : typeSearch == 'd' ? <News setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results} />
+              : typeSearch == 'c' ? <Videos setCursorVideos={setCursorVideos} results={results} />
 
-            : ""
+                : typeSearch == 'd' ? <News setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results} />
+
+                  : ""
         }
 
       </div>

@@ -1,29 +1,18 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { redirect } from 'react-router-dom'
-import { setFTrue } from '../store/slice/isFinished.slice'
+import { useDispatch } from 'react-redux'
 import { setLoadingTrue } from '../store/slice/isLoading.slice'
 import { setTerm } from '../store/slice/term.slice'
 
-const Home = ({setHome}) => {
+const Home = ({ setHome }) => {
 
-  const isFinished = useSelector((state) => state.Isfinished)
   const dispatch = useDispatch()
 
-  const term = useSelector((state) => state.termSlice)
-  
-  const handleTerm = (e)=>{
+  const handleTerm = (e) => {
     e.preventDefault()
-    const value = e.target.s.value.trim()
     dispatch(setLoadingTrue())
-    dispatch(setTerm(value))
+    dispatch(setTerm(e.target.s.value.trim()))
     setHome(false)
-    console.log(term);
-    console.log(isFinished)
-
   }
-
-  console.log(isFinished)
 
   return (
     <div className='flex justify-center align-middle p-3 flex-col py-12 px max-w-2xl m-auto'>

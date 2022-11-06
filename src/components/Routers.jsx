@@ -1,30 +1,22 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Routes, Route } from 'react-router-dom'
-import Htmls from '../results/Htmls'
+import { useSelector } from 'react-redux'
 import Home from './Home'
 import Results from './Results'
-import Search from './Search'
 
 
-const Routers = ({setHome,home,typeSearch, setTypeSearch,results}) => {
+const Routers = ({setHome,home,typeSearch}) => {
 
+  const loading =useSelector(state => state.isLoading)
 
-  const term = useSelector(state => state.termSlice)
-
-
-  console.log(results)
   return (
-    <div className='p-4 h-full'>
+    <div className={home || loading ? 'h-[69vh] p-4' : 'p-4'}>
 
-      {/* <Search typeSearch={typeSearch} results={results} setResults={setResults} /> */}
         {
           home ? 
-          // <Route path='/' element={<Home setHome={setHome} />} />
+
           <Home setHome={setHome} />
           : 
-          <Results typeSearch={typeSearch} results={results?.data} suggestion={results?.data.people_also_ask}/>
-          // <Route path='/' element={<Results typeSearch={typeSearch} results={results?.data} suggestion={results?.data.people_also_ask}/>}/>
+          <Results typeSearch={typeSearch}/>
 
         }
     
