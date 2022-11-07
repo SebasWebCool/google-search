@@ -20,10 +20,10 @@ const NavSearch = () => {
     setValueNav(term)
   }, [term])
   return (
-    <div className='w-[600px] flex justify-center align-middle '>
+    <div className='w-full flex justify-center align-middle '>
       <form onSubmit={handleTerm} className='w-3/5 flex justify-center align-middle'>
         <input className='w-11/12 h-8 text-gray-900' type="text" name='a' id='input' defaultValue={valueNav} />
-        <button className='w-1/12 h-8 dark:bg-slate-400 bg-blue-500'>🔍</button>
+        <button className='w-2/12 h-8 dark:bg-slate-400 bg-blue-500'>🔍</button>
       </form>
     </div>
   )
