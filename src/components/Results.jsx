@@ -24,6 +24,8 @@ const Results = ({ typeSearch }) => {
 
   const dispatch = useDispatch()
 
+  console.log(page)
+
   useEffect(() => {
     if (typeSearch == 'a') {
       const options = {
@@ -138,7 +140,7 @@ const Results = ({ typeSearch }) => {
     return (
       <div >
         {
-          typeSearch == 'a' ? <Htmls results={results} setPage={setPage} safeSearch={safeSearch} similarSearch={similarSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} />
+          typeSearch == 'a' ? <Htmls page={page} results={results} setPage={setPage} safeSearch={safeSearch} similarSearch={similarSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} />
 
             : typeSearch == 'b' ? <Imgs setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results} />
 

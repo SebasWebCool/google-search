@@ -4,12 +4,13 @@ import { setLoadingTrue } from '../store/slice/isLoading.slice'
 import { setTerm } from '../store/slice/term.slice'
 import Pagination from './Pagination'
 
-const htmls = ({ results, setSafeSearch, similarSearch, totalResults, setPage, safeSearch }) => {
+const htmls = ({ page,results, setSafeSearch, similarSearch, totalResults, setPage, safeSearch }) => {
 
   const dispatch = useDispatch()
 
   // const term = useSelector(state => state.termSlice)
 
+  console.log(totalResults);
 
   const handleSafeSearch = () => {
     setSafeSearch(!safeSearch)
@@ -18,17 +19,17 @@ const htmls = ({ results, setSafeSearch, similarSearch, totalResults, setPage, s
   return (
     <div className='p-6 flex flex-col justify-start align-middle'>
       <div className='w-full flex justify-start align-middle mb-6'>
-        <span className='text-xl p-1 ml-4 mr-2'>Sefe Search</span>
-        <button className='bg-blue-500 dark:bg-slate-600 text-xl p-1  cursor-pointer text-gray-200 rounded' onClick={handleSafeSearch}> {"" + `${safeSearch}`} </button>
+        <span className='text-xl p-1 ml-4 mr-2'>Safe Search is</span>
+        <button className='bg-blue-500 dark:bg-slate-600 text-xl p-1  cursor-pointer text-gray-200 rounded' onClick={handleSafeSearch}> {safeSearch ? ` on` :' off'} </button>
       </div>
-
+  
       <section className='px-2 mb-3'>
         <h3 className='text-xl pb-1'>
           Similar Search
         </h3>
         <ul className='flex flex-wrap gap-2 py-5'>
           {
-            similarSearch == false ? <p className="text-center text-lg">No similar questions</p>
+            similarSearch == false ? <p className="text-center text-lg">No similar Search</p>
               : similarSearch?.map((sugges, i) => (
                 <li className='px-3' key={i}>
                   <a className='hover:underline cursor-pointer' onClick={() => {
@@ -45,6 +46,7 @@ const htmls = ({ results, setSafeSearch, similarSearch, totalResults, setPage, s
           }
         </ul>
       </section>
+
       <main className='flex flex-wrap justify-between align-middle space-y-6 sm:px-5'>
         {
           results?.map((res, i) => (
@@ -53,7 +55,7 @@ const htmls = ({ results, setSafeSearch, similarSearch, totalResults, setPage, s
                     {res.datePublished}
                   </p> */}
               <a href={res.url} target="_blank">
-                <p className='text-sm'>
+                <p className='text-sm hover:underline'>
                   {res.url.length > 30 ? res.url.slice(0, 30) : res.url}
                 </p>
               </a>
@@ -65,7 +67,7 @@ const htmls = ({ results, setSafeSearch, similarSearch, totalResults, setPage, s
           ))
         }
       </main>
-      <Pagination totalResults={totalResults} setPage={setPage} />
+      <Pagination page={page} totalResults={totalResults} setPage={setPage} />
     </div>)
 
 }
