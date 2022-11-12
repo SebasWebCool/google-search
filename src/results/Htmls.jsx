@@ -60,7 +60,7 @@ const htmls = ({ page,results, setSafeSearch, similarSearch, totalResults, setPa
                 </p>
               </a>
               <a href={res.url} target={'_blank'}>
-                <h2 className='text-lg transition ease-in-out delay-150 duration-300 hover:text-blue-500 dark:text-blue-300 text-blue-700 '>{res.title}</h2>
+                <h2 className='text-lg transition ease-in-out hover:underline delay-100 duration-200 hover:text-blue-700 dark:text-blue-300 text-blue-500 '>{res.title}</h2>
               </a>
               <p className='w-full text-justify'>{res.description.length > 200 ? res.description.slice(0, 100) : res.description}</p>
             </section>
