@@ -22,10 +22,10 @@ const News = ({ results, setSafeSearch, totalResults, setPage, safeSearch, page 
             <h4 className='text-sm'>
               {res.datePublished}
             </h4>
-            <a className='w-10' href={res.url}>
+            <a className='w-10' href={res.url} target={'_blank'}>
               <img className='w-40' src={res.image.url} alt="" />
             </a>
-            <a href={res.url}>
+            <a href={res.url} target={'_blank'}>
               <h2 className='text-lg hover:underline dark:text-blue-300 text-blue-700'>
                 {res.title}
               </h2>
@@ -37,7 +37,7 @@ const News = ({ results, setSafeSearch, totalResults, setPage, safeSearch, page 
               <span className='text-green-800 dark:text-cyan-800'>
                 Provider {res.provider.name}
               </span>
-              <a href={res.url}>
+              <a href={res.url} target={'_blank'}>
                 <span className='text-sm hover:underline'>
                   {res.url.length > 30 ? res.url.slice(0, 30) : res.url}
                 </span>

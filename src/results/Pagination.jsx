@@ -22,9 +22,9 @@ const Pagination = ({ setPage, totalResults ,page}) => {
     setPage(i)
     dispatch(setLoadingTrue())
   }
-  // useEffect(()=>{
+  useEffect(()=>{
 
-  // },[page])
+  },[page])
 
   return (
 
