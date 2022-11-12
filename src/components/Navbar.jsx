@@ -2,7 +2,6 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import NavSearch from './NavSearch'
 import { setLoadingTrue } from '../store/slice/isLoading.slice'
-import { useState } from 'react'
 
 
 const navbar = ({ home, setHome, darkTheme, setDarkTheme, setTypeSearch, typeSearch }) => {
@@ -31,12 +30,12 @@ const navbar = ({ home, setHome, darkTheme, setDarkTheme, setTypeSearch, typeSea
   }
 
   return (
-    <div className='sm:h-[15vh] w-full flex flex-wrap sm:justify-between justify-center items-center border-b dark:border-gray-700 border-gray-200'>
+    <div className='h-[15vh] w-full flex flex-wrap justify-between  items-center border-b dark:border-gray-700 border-gray-200'>
 
-      <div className='flex justify-between px-3 min-[885px] items-center w-screen'>
+      <div className='flex  justify-between px-3 min-[885px] items-center w-screen'>
           <a className='cursor-pointer' href="#" onClick={goHome}>
             <p className='text-2xl bg-blue-500 font-bold text-white py-1 px-2 rounded dark:bg-gray-500 dark:text-gray-900'>
-              Goggl 🔍
+              Wobble 🔍
             </p>
           </a>
           <div className='justify-center w-8/12 hidden sm:flex'>
