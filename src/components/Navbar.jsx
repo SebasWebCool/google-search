@@ -34,7 +34,7 @@ const navbar = ({setPage, home, setHome, darkTheme, setDarkTheme, setTypeSearch,
   }
 
   return (
-    <div className='h-[15vh] w-full flex flex-wrap justify-between  items-center border-b dark:border-gray-700 border-gray-200'>
+    <div className='max-[600px]:h-[15vh] w-full flex flex-wrap justify-between  items-center border-b dark:border-gray-700 border-gray-200'>
 
       <div className='flex  justify-between px-3 min-[885px] items-center w-screen'>
           <a className='cursor-pointer' href="#" onClick={goHome}>
