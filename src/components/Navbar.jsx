@@ -34,7 +34,7 @@ const navbar = ({setPage, home, setHome, darkTheme, setDarkTheme, setTypeSearch,
   }
 
   return (
-    <div className='max-[600px]:h-[15vh] w-full flex flex-wrap justify-between  items-center border-b dark:border-gray-700 border-gray-200'>
+    <div className='md:h-[15vh] w-full flex flex-wrap justify-between  items-center border-b dark:border-gray-700 border-gray-200'>
 
       <div className='flex  justify-between px-3 min-[885px] items-center w-screen'>
           <a className='cursor-pointer' href="#" onClick={goHome}>
@@ -49,7 +49,7 @@ const navbar = ({setPage, home, setHome, darkTheme, setDarkTheme, setTypeSearch,
           }
           </div>
           <button className='text-xl dark:bg-gray-500 dark:text-gray-900 bg-white border rounded-full px-2 py-1' onClick={() => setDarkTheme(!darkTheme)}>
-            {darkTheme ? 'Light ☀' : 'Dark 🌙'}
+            {darkTheme ? 'Light 🌞' : 'Dark 🌙'}
           </button>
       </div>
           <div className='sm:hidden flex justify-center align-middle w-full pt-5'>
