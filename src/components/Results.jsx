@@ -142,11 +142,11 @@ const Results = ({ typeSearch }) => {
         {
           typeSearch == 'a' ? <Htmls page={page} results={results} setPage={setPage} safeSearch={safeSearch} similarSearch={similarSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} />
 
-            : typeSearch == 'b' ? <Imgs setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results} />
+            : typeSearch == 'b' ? <Imgs page={page} setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results} />
 
               : typeSearch == 'c' ? <Videos setCursorVideos={setCursorVideos} results={results} />
 
-                : typeSearch == 'd' ? <News setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results} />
+                : typeSearch == 'd' ? <News page={page} setPage={setPage} safeSearch={safeSearch} setSafeSearch={setSafeSearch} totalResults={totalResults} results={results} />
 
                   : ""
         }

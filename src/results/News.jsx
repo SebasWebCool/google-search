@@ -2,7 +2,7 @@ import React from 'react'
 import Loading from '../components/Loading'
 import Pagination from './Pagination';
 
-const News = ({ results, setSafeSearch, totalResults, setPage, safeSearch }) => {
+const News = ({ results, setSafeSearch, totalResults, setPage, safeSearch, page }) => {
 
   const handleSafeSearch = () => {
     setSafeSearch(!safeSearch)
@@ -47,7 +47,7 @@ const News = ({ results, setSafeSearch, totalResults, setPage, safeSearch }) => 
           </div>
         ))
       }
-      <Pagination totalResults={totalResults} setPage={setPage} />
+      <Pagination page={page} totalResults={totalResults} setPage={setPage} />
 
     </section>
   )

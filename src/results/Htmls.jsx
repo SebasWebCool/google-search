@@ -54,13 +54,13 @@ const htmls = ({ page,results, setSafeSearch, similarSearch, totalResults, setPa
               {/* <p className='text-sm'>
                     {res.datePublished}
                   </p> */}
-              <a href={res.url} target="_blank">
-                <p className='text-sm hover:underline'>
+              <a href={res.url} target={'_blank'}>
+                <p className='text-sm transition ease-in-out delay-150 duration-300 hover:text-blue-500'>
                   {res.url.length > 30 ? res.url.slice(0, 30) : res.url}
                 </p>
               </a>
-              <a href={res.url}>
-                <h2 className='text-lg hover:underline dark:text-blue-300 text-blue-700 '>{res.title}</h2>
+              <a href={res.url} target={'_blank'}>
+                <h2 className='text-lg transition ease-in-out delay-150 duration-300 hover:text-blue-500 dark:text-blue-300 text-blue-700 '>{res.title}</h2>
               </a>
               <p className='w-full text-justify'>{res.description.length > 200 ? res.description.slice(0, 100) : res.description}</p>
             </section>

@@ -1,6 +1,6 @@
 import Pagination from './Pagination'
 
-const Imgs = ({ results, setSafeSearch, totalResults, setPage, safeSearch }) => {
+const Imgs = ({ results, setSafeSearch, totalResults, setPage, safeSearch, page }) => {
 
   const handleSafeSearch = () => {
     setSafeSearch(!safeSearch)
@@ -18,15 +18,15 @@ const Imgs = ({ results, setSafeSearch, totalResults, setPage, safeSearch }) => 
           (
             res.url ?
               <li className='b-gray-500 my-5 h-32 p-1 sm:h-64' key={i}>
-                <a href={res.url}>
-                  <img className='h-full' src={res.url} alt="" />
+                <a href={res.url} target={'_blank'}>
+                  <img className='h-full transition ease-in-out delay-100 duration-300  hover:scale-125' src={res.url} alt="" />
                   {/* </a>
                 {/* <h3>{res.title &&  res.title.length > 30 ? res.title.slice(0,20)+"..." : res.title }</h3> 
                 <a className='text-sm hover:underline cursor-pointer hover:text-teal-800' href={res.webpageUrl}> */}
                   {res.webpageUrl && res.webpageUrl.length > 30 ? res.webpageUrl.slice(0, 30) : res.webpageUrl}
                 </a>
                 <br />
-                <a className='hover:underline cursor-pointer hover:text-teal-800' href={res.webpageUrl}>
+                <a className='transition ease-in-out delay-150 duration-300 hover:text-blue-500 cursor-pointer hover:text-teal-800' href={res.webpageUrl} target={'_blank'}>
                   Go to the website
                 </a>
               </li>
@@ -34,7 +34,7 @@ const Imgs = ({ results, setSafeSearch, totalResults, setPage, safeSearch }) => 
           )
         }
       </ul>
-      <Pagination totalResults={totalResults} setPage={setPage} />
+      <Pagination page={page} totalResults={totalResults} setPage={setPage} />
 
     </section>
   )
