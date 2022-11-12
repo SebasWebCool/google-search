@@ -8,11 +8,10 @@ import axios from 'axios';
 import Loading from './Loading';
 import { setLoadingFalse } from '../store/slice/isLoading.slice';
 
-const Results = ({ typeSearch }) => {
+const Results = ({ typeSearch, page, setPage}) => {
 
   const [results, setResults] = useState()
   const [totalResults, setTotalResults] = useState("")
-  const [page, setPage] = useState(1)
   const [safeSearch, setSafeSearch] = useState(false)
 
   const [similarSearch, setSimilarSearch] = useState()

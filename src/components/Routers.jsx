@@ -4,7 +4,7 @@ import Home from './Home'
 import Results from './Results'
 
 
-const Routers = ({setHome,home,typeSearch}) => {
+const Routers = ({setHome,home,typeSearch, page, setPage}) => {
 
   const loading =useSelector(state => state.isLoading)
 
@@ -16,7 +16,7 @@ const Routers = ({setHome,home,typeSearch}) => {
 
           <Home setHome={setHome} />
           : 
-          <Results typeSearch={typeSearch}/>
+          <Results typeSearch={typeSearch} page={page} setPage={setPage}/>
 
         }
     

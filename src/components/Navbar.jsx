@@ -4,7 +4,7 @@ import NavSearch from './NavSearch'
 import { setLoadingTrue } from '../store/slice/isLoading.slice'
 
 
-const navbar = ({ home, setHome, darkTheme, setDarkTheme, setTypeSearch, typeSearch }) => {
+const navbar = ({setPage, home, setHome, darkTheme, setDarkTheme, setTypeSearch, typeSearch }) => {
 
   const dispatch = useDispatch()
 
@@ -15,18 +15,22 @@ const navbar = ({ home, setHome, darkTheme, setDarkTheme, setTypeSearch, typeSea
   const hadleSearch = () => {
     dispatch(setLoadingTrue())
     setTypeSearch('a')
+    setPage(1)
   }
   const hadleImages = () => {
     dispatch(setLoadingTrue())
     setTypeSearch('b')
+    setPage(1)
   }
   const hadleVideos = () => {
     dispatch(setLoadingTrue())
     setTypeSearch('c')
+    setPage(1)
   }
   const hadleNews = () => {
     dispatch(setLoadingTrue())
     setTypeSearch('d')
+    setPage(1)
   }
 
   return (

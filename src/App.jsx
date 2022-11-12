@@ -8,6 +8,8 @@ function App() {
 
   const [darkTheme, setDarkTheme] = useState(true)
   const [typeSearch, setTypeSearch] = useState('a')
+  const [page, setPage] = useState(1)
+
   const [home, setHome] = useState(true)
   // const [results, setResults] = useState()
 
@@ -17,8 +19,8 @@ function App() {
     <div className={darkTheme ? 'App dark' : 'App'}>
       <div className="bg-gray-100 dark:bg-gray-900 dark:text-gray-200 flex flex-col justify-between align-middle">
 
-        <Navbar home={home} setHome={setHome} typeSearch={typeSearch} setTypeSearch={setTypeSearch} darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
-        <Route setHome={setHome} home={home} setTypeSearch={setTypeSearch} typeSearch={typeSearch} />
+        <Navbar setPage={setPage} home={home} setHome={setHome} typeSearch={typeSearch} setTypeSearch={setTypeSearch} darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
+        <Route page={page} setPage={setPage} setHome={setHome} home={home} setTypeSearch={setTypeSearch} typeSearch={typeSearch} />
         <Footer />
 
 
